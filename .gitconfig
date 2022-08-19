@@ -1,0 +1,17 @@
+[user]
+	name = Dulustan-N
+	email = dnikiforov@nes.ru
+[init]
+	defaultBranch = main
+[core]
+	editor = micro
+	excludesfile = /home/dulustan/.gitignore
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	dump = cat-file
+	type = cat-file
+	logg = log --all --graph --decorate

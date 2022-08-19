@@ -1,0 +1,23 @@
+# Compiled source #
+###################
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+*.out
+
+#Mac & Windows
+Thumbs.db
+.DS_Store
+
+#Linux
+*~
+
+#Editor specific
+.vscode
+
+#General
+*.log
+*.tmp
