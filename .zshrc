@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export EDITOR='micro'
-
+export PATH="/home/dulustan/.local/bin:$PATH"
 # Set up the prompt
 #autoload -Uz promptinit
 #promptinit
@@ -65,6 +65,7 @@ alias l='ls -CF'
 alias zshconfig="subl ~/.zshrc"
 alias reload=". ~/.zshrc"
 
+alias chrome=google-chrome
 alias mi=micro 
 alias fd=fdfind
 alias bat=batcat 
