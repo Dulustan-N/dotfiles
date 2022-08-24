@@ -7,6 +7,7 @@ fi
 
 export EDITOR='micro'
 export PATH="/home/dulustan/.local/bin:$PATH"
+export PATH="/usr/local/texlive/2022/bin/x86_64-linux:$PATH"
 # Set up the prompt
 #autoload -Uz promptinit
 #promptinit
@@ -58,7 +59,7 @@ alias restart='sudo reboot'
 alias suspend='sudo pm-suspend'
 
 alias ls='ls --color'
-alias ll='ls -alF'
+alias ll='ls -AlF'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -71,9 +72,15 @@ alias fd=fdfind
 alias bat=batcat 
 
 
-
 #my CP compile functions
 comp() { g++ -DLOCAL -std=c++17 -O2 -Wall -Wextra -Wno-unused-result -fmax-errors=2 -fsanitize=address,undefined -o ${1%.*} $1; }
 compr() { comp $1 && "./${1%.*}"; }
 compf() { g++ -DLOCAL -std=c++17 -O2 -Wall -Wextra -Wno-unused-result -fmax-errors=2 -fsanitize=address,undefined -o ${1%.*} $1; }
 compfr() { compf $1 && "./${1%.*}"; }
+
+
+neofetch
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

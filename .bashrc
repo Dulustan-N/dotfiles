@@ -8,8 +8,6 @@ case $- in
       *) return;;
 esac
 
-export PATH="/home/dulustan/.local/bin"
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -18,7 +16,7 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=5000
+HISTSIZE=1000
 HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
@@ -117,26 +115,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-#ALIASES
-alias shutdown='sudo shutdown now'
-alias restart='sudo reboot'
-alias suspend='sudo pm-suspend'
-
-alias ls='ls --color'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-alias zshconfig="subl ~/.zshrc"
-alias reload=". ~/.zshrc"
-
-alias mi=micro 
-alias fd=fdfind
-alias bat=batcat 
-
-#my CP compile functions
-comp() { g++ -DLOCAL -std=c++17 -O2 -Wall -Wextra -Wno-unused-result -fmax-errors=2 -fsanitize=address,undefined -o ${1%.*} $1; }
-compr() { comp $1 && "./${1%.*}"; }
-compf() { g++ -DLOCAL -std=c++17 -O2 -Wall -Wextra -Wno-unused-result -fmax-errors=2 -fsanitize=address,undefined -o ${1%.*} $1; }
-compfr() { compf $1 && "./${1%.*}"; }
