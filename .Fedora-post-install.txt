@@ -1,0 +1,133 @@
+# Fedora Workstatio post-install
+
+dnf update
+
+#Update firmware
+fwupdmgr get-devices
+fwupdmgr refresh --force
+fwupdmgr get-updates
+fwupdmgr update
+
+#Enable Free and Non-free RPM Fusion
+dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
+dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+#Enable Fedora workstation repositories
+dnf install fedora-workstation-repositories
+#Enable individual repository
+dnf config-manager --set-enabled <name of repository from link above>
+
+# Enable DeltaRPM and Faster Mirror plugins
+#append to /etc/dnf/dnf.conf
+echo 'fastestmirror=1' | tee -a /etc/dnf/dnf.conf
+echo 'max_parallel_downloads=10' | tee -a /etc/dnf/dnf.conf
+echo 'deltarpm=true' | tee -a /etc/dnf/dnf.conf
+
+#NVidia driver
+/sbin/lspci | grep -e VGA #determine graphic card model
+dnf update -y # and reboot if you are not on the latest kernel
+dnf install akmod-nvidia # rhel/centos users can use kmod-nvidia instead
+dnf install xorg-x11-drv-nvidia-cuda #optional for cuda/nvdec/nvenc support
+
+#Multimedia codecs
+dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+dnf install lame\* --exclude=lame-devel
+dnf group upgrade --with-optional Multimedia
+
+#GNOME tweaks and extensions
+dnf install gnome-tweaks
+dnf install gnome-extensions-app
+
+__________
+
+#Git
+add-apt-repository ppa:git-core/ppa
+apt update
+apt install git
+
+#Generating new SSH key for Git:
+ssh-keygen -t ed25519 -C "your_email@example.com"
+eval "$(ssh-agent -s)" #start a ssh-agent in background
+ssh-add ~/.ssh/id_ed25519  #add my private SSH key to ssh-agent
+
+#YADM and restoring dotfiles
+apt install yadm
+yadm clone -f https://github.com/Dulustan-N/dotfiles
+
+#Google Chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt install ./google-chrome-stable_current_amd64.deb
+
+#ZSH 
+apt install zsh
+chsh -s $(which zsh)
+
+#MesloLGS NF fonts --- double click each file to install
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+
+#ZSH plugins
+git clone --depth=1 https://github.com/romkatv/powerlevel10k ~/.zsh/powerlevel10k
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
+
+#Tilix
+apt install tilix
+update-alternatives --config x-terminal-emulator #choose tilix
+
+
+
+#Ulauncher
+add-apt-repository ppa:agornostal/ulauncher 
+apt update 
+apt install ulauncher
+
+#micro text editor
+curl https://getmic.ro | bash
+mv micro /usr/bin
+
+#CLI apps
+apt install nnn
+apt install tldr
+apt install tre-command
+apt install bat
+apt install fd-find
+apt install ripgrep
+
+#Qbittorrent
+add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
+apt update
+apt install qbittorrent
+
+#Okular pdf reader
+apt install okular
+
+#SMplayer
+sudo add-apt-repository ppa:rvm/smplayer 
+sudo apt-get update 
+sudo apt-get install smplayer
+
+#!! VS Code - wget https://go.microsoft.com/fwlink/?LinkID=760868 and install
+
+#GCC
+apt install build-essential
+
+#NVM, NPM, Nodejs
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+nvm install node
+npm install markdown-it
+npm install markdown-it-footnote
+
+#Surfshark
+wget https://ocean.surfshark.com/debian/pool/main/s/surfshark-release/surfshark-release_1.0.0-2_amd64.deb
+sudo apt install ./path/to/downloaded/link
+sudo apt update
+sudo apt install surfshark
+
+#Steam
+apt install steam
+
+#Rclone
+curl https://rclone.org/install.sh | sudo bash
