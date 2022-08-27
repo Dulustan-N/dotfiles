@@ -9,7 +9,7 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 export EDITOR='micro'
 export PATH="/home/dulustan/.local/bin:$PATH"
-export PATH="/usr/local/texlive/2022/bin/x86_64-linux:$PATH"
+
 # Set up the prompt
 #autoload -Uz promptinit
 #promptinit
@@ -68,11 +68,13 @@ alias l='ls -CF'
 alias zshconfig="subl ~/.zshrc"
 alias reload=". ~/.zshrc"
 
+alias ged=gnome-text-editor
 alias chrome=google-chrome
 alias mi=micro 
 alias fd=fdfind
 alias bat=batcat 
 
+alias surf="sudo openvpn /etc/openvpn/jp.ovpn"
 
 #my CP compile functions
 comp() { g++ -DLOCAL -std=c++17 -O2 -Wall -Wextra -Wno-unused-result -fmax-errors=2 -fsanitize=address,undefined -o ${1%.*} $1; }
