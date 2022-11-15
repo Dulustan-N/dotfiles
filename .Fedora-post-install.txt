@@ -68,6 +68,10 @@ wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20B
 wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
 wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
 
+#install Microsoft fonts
+dnf install curl cabextract xorg-x11-font-utils fontconfig -y
+rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+
 #ZSH 
 dnf install zsh
 chsh -s $(which zsh)
@@ -76,7 +80,6 @@ chsh -s $(which zsh)
 git clone --depth=1 https://github.com/romkatv/powerlevel10k ~/.zsh/powerlevel10k
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
-
 
 #Fish
 dnf install fish
@@ -125,6 +128,8 @@ dnf install steam
 dnf install openvpn
 # https://support.surfshark.com/hc/en-us/articles/360011051133-How-to-set-up-OpenVPN-using-Linux-Terminal
 
-
+#TeX
+dnf install texlive-scheme-full
+dnf install texstudio
 
 
